@@ -58,7 +58,7 @@ int main() {
 	// Depth First traversal should print User information not just indices
 	// int start = 0;
 	// // Call DFT 
-	g.DFT(3);
+	g.DFT(0);
 
 
 	// bool found = false;
