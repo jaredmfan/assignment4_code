@@ -25,48 +25,40 @@ int main() {
 	users.push_back(User("hannah", "hannah@example.com", "password8", "Bio of Hannah", "hannah_pic.jpg"));
 	users.push_back(User("isaac", "isaac@example.com", "password9", "Bio of Isaac", "isaac_pic.jpg"));
 	users.push_back(User("jack", "jack@example.com", "password10", "Bio of Jack", "jack_pic.jpg"));
-
-	
 	// Initialize a graph with n vertices (where n is the number of Users) 
 	//	 Indicate whether it is directed or undirected 
 	// TO DO 
-
 	Graph<User> g(10, true);
-
-
 	// Add edges (userA, userB, weight)
 	// TO DO 
+	g.addEdge(0, 1, users[1]);
+	g.addEdge(1, 4, users[4]);
+	g.addEdge(2, 9, users[9]);
+	g.addEdge(3, 5, users[5]);
+	g.addEdge(0, 5, users[5]);
+	g.addEdge(5, 3, users[3]);
+	g.addEdge(4, 6, users[6]);
+	g.addEdge(6, 2, users[2]);
+	g.addEdge(2, 6, users[6]);
+	g.addEdge(7, 1, users[1]);
+	g.addEdge(6, 7, users[7]);
+	g.addEdge(8, 0, users[0]);
+	g.addEdge(9, 7, users[7]);
+	g.addEdge(7, 8, users[8]);
+	g.addEdge(8, 7, users[7]);
 
-	// g.addEdge(1, 3, users[2]);
-	// g.addEdge(2, 9, users[8]);
-	// g.addEdge(4, 10, users[6]);
-	// g.addEdge(5, 6, users[5]);
-	// g.addEdge(6, 8, users[7]);
-	// g.addEdge(7, 5, users[4]);
-	// g.addEdge(9, 4, users[3]);
-	// g.addEdge(3, 2, users[1]);
-	// g.addEdge(8, 1, users[0]);
-	// g.addEdge(10, 5, users[4]);
-	// Add edges between users
-	g.addEdge(0, 1, users[1]); // Alice follows Bob
-	g.addEdge(1, 2, users[2]); // Bob follows Charlie
-	g.addEdge(2, 3, users[3]); // Charlie follows David
-	g.addEdge(3, 4, users[4]); // David follows Eve
-	g.addEdge(4, 5, users[5]); // Eve follows Frank
-	g.addEdge(5, 6, users[6]); // Frank follows Grace
-	g.addEdge(6, 7, users[7]); // Grace follows Hannah
-	g.addEdge(7, 8, users[8]); // Hannah follows Isaac
-	g.addEdge(8, 9, users[9]); // Isaac follows Jack
-	g.addEdge(9, 0, users[0]); // Jack follows Alice (creates a cycle)
+	//the graph is directed because if a user follows another user, that does not mean that that user will follow them back
+
+	
 
 
 	// Print the adjacency list
-	g.printGraph();
+	//g.printGraph();
 
-	// // Depth First traversal should print User information not just indices
+	// Depth First traversal should print User information not just indices
 	// int start = 0;
 	// // Call DFT 
-	// // g.DFT(0, ...);
+	g.DFT(3);
 
 
 	// bool found = false;
@@ -74,7 +66,7 @@ int main() {
 	// string username1 = ""; //replace with a username that exists 
 	// // Call DFS 
 	// // TO DO:  
-	// // found = g.DFS(username1, ...);
+	// //found = g.DFS(3);
 	// if(found){
 	// 	cout << username1 << " has been found in the graph!" << endl;
 	// }else{
@@ -91,5 +83,5 @@ int main() {
 	// 	cout << username1 << " has not been found in the graph!" << endl;
 	// }
 
-	return 0;
+	// return 0;
 }
