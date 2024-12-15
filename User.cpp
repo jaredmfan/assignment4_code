@@ -58,3 +58,11 @@ std::string* User::displayKthPost(const int& k){
 bool User::operator==(const User& other) const {
     return username == other.username && email == other.email;
 }
+
+
+
+std::ostream& operator<<(std::ostream& os, const User& user) {
+    os << "Username: " << user.username << ", Email: " << user.email;
+    return os;
+}
+

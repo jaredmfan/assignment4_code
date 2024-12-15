@@ -1,6 +1,8 @@
 #include "Graph.h"
 #include "LinkedBagDS/LinkedBag.h"
 #include "LinkedBagDS/Node.h"
+#include <utility>
+#include <iostream>
 
 // Constructor
 template <typename T>
@@ -11,7 +13,8 @@ Graph<T>::Graph(int vertices, bool directed)
 
 // Add an edge
 template <typename T>
-void Graph<T>::addEdge(int u, int v, T weight) {
+void Graph<T>::addEdge(int u, int v, T
+ weight) {
 
     if(u == v){
         return;
@@ -34,11 +37,20 @@ template <typename T>
 void Graph<T>::printGraph() const {
     for (int i = 0; i < V; ++i) {
         cout << "Vertex " << i << ": ";
-        for (const auto& neighbor : adjList[i]) {
+        auto neighbors = adjList[i].toVector();
+        for (const auto& neighbor : neighbors) {
             cout << "(" << neighbor.first << ", " << neighbor.second << ") ";
         }
         cout << endl;
     }
+    // for (int i = 0; i < V; ++i) {
+    //     cout << "Vertex " << i << ": ";
+    //     //auto neighbors = adjList[i].toVector();
+    //     for (const auto& neighbor : neighbors) {
+    //         cout << "(" << neighbor.first << ", " << neighbor.second << ") ";
+    //     }
+    //     cout << endl;
+    // }
 }
 
 // Get neighbors of a vertex
@@ -60,7 +72,16 @@ void Graph<T>::DFT(int start) const {
 template <typename T>
 void Graph<T>::DFTRecursive(int v, vector<bool>& visited) const {
     visited[v] = true;
-    cout << v << " "; // Visit the current vertex
+    cout << v << " ";
+
+    // Node<T> curr;
+    // curr = adjList[v]
+    // T currItem = curr.getData().second;
+    //cout << adjList[v].findKthItem(k).second.getData() << " "; // Visit the current vertex
+    
+
+    
+
 
     // Recur for all the vertices adjacent to this vertex
     for (const auto& neighbor : adjList[v]) {
