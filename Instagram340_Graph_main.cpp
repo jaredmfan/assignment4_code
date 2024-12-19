@@ -6,6 +6,8 @@
 #include "LinkedBagDS/LinkedBag.h"
 #include "User.h"
 
+using namespace std;
+
 int main() {
 	// Create a list of Users
 	std::vector<User> users; 
@@ -28,24 +30,24 @@ int main() {
 	// Initialize a graph with n vertices (where n is the number of Users) 
 	//	 Indicate whether it is directed or undirected 
 	// TO DO 
-	Graph<User> g(10, true);
+	Graph<int> g(10, false);
 	// Add edges (userA, userB, weight)
 	// TO DO 
-	g.addEdge(0, 1, users[1]);
-	g.addEdge(1, 4, users[4]);
-	g.addEdge(2, 9, users[9]);
-	g.addEdge(3, 5, users[5]);
-	g.addEdge(0, 5, users[5]);
-	g.addEdge(5, 3, users[3]);
-	g.addEdge(4, 6, users[6]);
-	g.addEdge(6, 2, users[2]);
-	g.addEdge(2, 6, users[6]);
-	g.addEdge(7, 1, users[1]);
-	g.addEdge(6, 7, users[7]);
-	g.addEdge(8, 0, users[0]);
-	g.addEdge(9, 7, users[7]);
-	g.addEdge(7, 8, users[8]);
-	g.addEdge(8, 7, users[7]);
+	g.addEdge(0, 1, 6);
+	g.addEdge(1, 4, 7);
+	g.addEdge(2, 9, 4);
+	g.addEdge(3, 5, 10);
+	g.addEdge(0, 5, 30);
+	g.addEdge(5, 3, 10);
+	g.addEdge(4, 6, 6);
+	g.addEdge(6, 2, 4);
+	g.addEdge(2, 6, 7);
+	g.addEdge(7, 1, 2);
+	g.addEdge(6, 7, 20);
+	g.addEdge(8, 0, 120);
+	g.addEdge(9, 7, 400);
+	g.addEdge(7, 8, 60);
+	g.addEdge(8, 7, 80);
 
 	//the graph is directed because if a user follows another user, that does not mean that that user will follow them back
 
@@ -58,7 +60,7 @@ int main() {
 	// Depth First traversal should print User information not just indices
 	// int start = 0;
 	// // Call DFT 
-	g.DFT(0);
+	g.DFT(0,users);
 
 
 	// bool found = false;

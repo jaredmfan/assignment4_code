@@ -1,8 +1,4 @@
 #include "Graph.h"
-#include "LinkedBagDS/LinkedBag.h"
-#include "LinkedBagDS/Node.h"
-#include <utility>
-#include <iostream>
 
 // Constructor
 template <typename T>
@@ -13,13 +9,8 @@ Graph<T>::Graph(int vertices, bool directed)
 
 // Add an edge
 template <typename T>
-void Graph<T>::addEdge(int u, int v, T
- weight) {
-
-    if(u == v){
-        return;
-    }
-
+void Graph<T>::addEdge(int u, int v, T weight) {
+    if (u == v) return;
     adjList[u].add({v, weight});
     if (!directed) {
         adjList[v].add({u, weight});
@@ -28,8 +19,8 @@ void Graph<T>::addEdge(int u, int v, T
 
 // Get number of nodes
 template <typename T>
-int Graph<T>::getNumVertices() const{
-	return V;
+int Graph<T>::getNumVertices() const {
+    return V;
 }
 
 // Print the adjacency list
@@ -43,14 +34,6 @@ void Graph<T>::printGraph() const {
         }
         cout << endl;
     }
-    // for (int i = 0; i < V; ++i) {
-    //     cout << "Vertex " << i << ": ";
-    //     //auto neighbors = adjList[i].toVector();
-    //     for (const auto& neighbor : neighbors) {
-    //         cout << "(" << neighbor.first << ", " << neighbor.second << ") ";
-    //     }
-    //     cout << endl;
-    // }
 }
 
 // Get neighbors of a vertex
@@ -59,37 +42,42 @@ const LinkedBag<pair<int, T>>& Graph<T>::getNeighbors(int vertex) const {
     return adjList[vertex];
 }
 
-
-// DFS Traversal (Recursive approach)
+// Depth First Traversal
 template <typename T>
-void Graph<T>::DFT(int start) const {
-    vector<bool> visited(V, false); // To keep track of visited vertices
-    DFTRecursive(start, visited);
-    cout << endl;
+void Graph<T>::DFT(int start, vector<User>& data) const {
+    vector<bool> visited(V, false);
+    DFTRecursive(start, visited, data);
 }
 
-// Utility function for DFS (Recursive)
+// Recursive DFS
 template <typename T>
-void Graph<T>::DFTRecursive(int v, vector<bool>& visited) const {
+void Graph<T>::DFTRecursive(int v, vector<bool>& visited, vector<User>& data) const {
     visited[v] = true;
-    const LinkedBag<std::pair<int, T>>& neighbors = adjList[v];
+    auto neighbors = adjList[v].toVector();
 
-    
-    
+    /*
+    for (const auto& neighbor : neighbors) {
+        int neighborNode = neighbor.first;
+        const T& user = neighbor.second;
+        cout << "User: " << user << endl;
 
-    // Recur for all the vertices adjacent to this vertex
-    for (const auto& neighbor : neighbors.toVector()) {
-        int neighborNode = neighbor.first; // The connected node
-        const T& user = neighbor.second; // The weight of the edge
-        cout << "User:  " << ": " << user << endl;
-        if (!visited[neighbor.first]) {
-            DFTRecursive(neighborNode, visited);
+        if (!visited[neighborNode]) {
+            DFTRecursive(neighborNode, visited, data);
+        }
+    }
+    
+    */
+    User user = data[v];
+    cout << "Vertex #: " << v << " User: " << user << endl;
+    for (const auto& neighbor : neighbors) {
+        int next = neighbor.first;
+        const T& userIndex = neighbor.second; 
+
+        
+        if (!visited[next]) {
+            
+            
+            DFTRecursive(next, visited, data); 
         }
     }
 }
-
-// -----------------------------------------------------
-// Depth First Search (by username)
-// TO DO 
-// Add DFS implementation 
-// Add DFSRecursive implementation 

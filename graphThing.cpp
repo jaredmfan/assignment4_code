@@ -1,5 +1,5 @@
 template <typename T>
-void Graph<T>::DFTRecursive(int v, vector<bool>& visited) const {
+void Graph<T>::DFTRecursive(int v, vector<bool>& visited, vector<T> data) const {
     visited[v] = true;
     const LinkedBag<std::pair<int, T>>& neighbors = adjList[v];
 

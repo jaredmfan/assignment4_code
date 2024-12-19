@@ -6,10 +6,8 @@
 
 #include <iostream>
 #include <vector>
-#include <list>
 #include <utility>
-
-  // For std::pair
+#include "User.h"
 
 using namespace std;
 
@@ -33,22 +31,18 @@ public:
     const LinkedBag<pair<int, T>>& getNeighbors(int vertex) const;
 
     // Depth First Traversal
-    void DFT(int start) const;
-    void DFTRecursive(int v, vector<bool>& visited) const;
-
-    // -----------------------------------------------------
-    // Depth First Search (by username)
-    // TO DO 
-    // Add DFS prototype 
-    // Add DFSRecursive prototype
+    void DFT(int start, vector<User>& data) const;
 
 private:
+    // Recursive helper for DFS
+    void DFTRecursive(int v, vector<bool>& visited, vector<User>& data) const;
+
     int V; // Number of vertices
     bool directed; // Whether the graph is directed or undirected
     vector<LinkedBag<pair<int, T>>> adjList; // Adjacency list
 };
 
-// Include the implementation of template functions
+// Implementation of template functions
 #include "Graph.cpp"
 
 #endif // GRAPH_H
